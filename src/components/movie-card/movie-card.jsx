@@ -1,4 +1,4 @@
-export const MovieCard = (movieData, onMovieClick) => {
+export const MovieCard = ({ movieData, onMovieClick }) => {
   return (
     <div
       onclick={() => {
