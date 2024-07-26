@@ -19,7 +19,21 @@ export const MovieView = ({ movieData, onBackClick }) => {
         </li>
       </div>
       <div>
-        <span>Genre : </span>
+        <li>
+          <span> ReleaseDate: </span>
+          <span>{movieData.ReleaseDate}</span>
+        </li>
+      </div>
+      <div>
+        <li>
+          <span>Cast: </span>
+          <span>{movieData.Cast}</span>
+        </li>
+      </div>
+      <div>
+        <span>
+          <h1>Genre : </h1>
+        </span>
         <li>
           <span>Name: </span>
           <span>{movieData.Genre.Name}</span>
@@ -30,7 +44,9 @@ export const MovieView = ({ movieData, onBackClick }) => {
         </li>
       </div>
       <div>
-        <span> Director:</span>
+        <span>
+          <h1> Director: </h1>
+        </span>
         <li>
           {" "}
           <span> Director Name:</span>
@@ -50,18 +66,7 @@ export const MovieView = ({ movieData, onBackClick }) => {
           <span>{movieData.Director.DeathYear}</span>
         </li>
       </div>
-      <div>
-        <li>
-          <span> ReleaseDate: </span>
-          <span>{movieData.ReleaseDate}</span>
-        </li>
-      </div>
-      <div>
-        <li>
-          <span>Cast: </span>
-          <span>{movieData.Cast}</span>
-        </li>
-      </div>
+
       <button onClick={onBackClick}>Back</button>
     </div>
   );
