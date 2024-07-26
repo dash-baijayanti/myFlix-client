@@ -38,7 +38,7 @@ export const MovieView = ({ movieData, onBackClick }) => {
         <span>Cast: </span>
         <span>{movieData.Cast}</span>
       </div>
-      <button onClick={onBackClick}>Back</button>
+      <button  onClick={onBackClick}>Back</button>
     </div>
   );
 };
