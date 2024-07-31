@@ -35,6 +35,32 @@ export const MainView = () => {
       });
   }, []);
 
+  useEffect(() => {
+    fetch("https://movie-api-7rmr.onrender.com/movies")
+      .then((response) => response.json())
+      .then((data) => {
+        const moviesFromApi = data.docs.map((doc) => {
+          return {
+            id: doc.key,
+            title: doc.title,
+            description: doc.description,
+            imageUrl: doc.imageUrl,
+            genre: {
+              name: doc.genre_name,
+              description: doc.genre_description,
+            },
+            director: {
+              name: doc.director_name,
+              bio: doc.director_bio,
+              birthYear: doc.birthYear,
+              deathYear: doc.deathYear,
+            },
+          };
+        });
+        setMovies(moviesFromApi);
+      });
+  }, []);
+
   if (selectedMovie) {
     return (
       <MovieView
