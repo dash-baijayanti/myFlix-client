@@ -19,7 +19,7 @@ export const MainView = () => {
             imageUrl: doc.imageUrl,
             genre: {
               name: doc.genre_name,
-              description: doc.genre.description,
+              description: doc.genre_description,
             },
             director: {
               name: doc.director_name,

@@ -1,4 +1,4 @@
-import PropTypes from "prop-typesp";
+import PropTypes from "prop-types";
 export const MovieCard = ({ movieData, onMovieClick }) => {
   return (
     <div
