@@ -28405,7 +28405,7 @@ const MovieView = ({ movieData, onBackClick })=>{
                             lineNumber: 29,
                             columnNumber: 11
                         }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("spam", {
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                             children: movieData.cast
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",

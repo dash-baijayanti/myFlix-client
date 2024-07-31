@@ -27,7 +27,7 @@ export const MovieView = ({ movieData, onBackClick }) => {
       <div>
         <li>
           <span>Cast:</span>
-          <spam>{movieData.cast}</spam>
+          <span>{movieData.cast}</span>
         </li>
       </div>
       <div>
