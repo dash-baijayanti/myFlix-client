@@ -27261,8 +27261,8 @@ const MainView = ()=>{
                     director: {
                         name: doc.Director.Name,
                         bio: doc.Director.Bio,
-                        birthYear: doc.BirthYear,
-                        deathYear: doc.DeathYear
+                        birthYear: doc.Director.BirthYear,
+                        deathYear: doc.Director.DeathYear
                     }
                 };
             });
