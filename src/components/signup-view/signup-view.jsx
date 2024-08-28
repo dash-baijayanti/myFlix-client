@@ -15,7 +15,7 @@ export const SignupView = () => {
       email: email,
       dateOfBirth: dateofbirth,
     };
-    fetch("SIGNUP-URL", {
+    fetch("https://movie-api-7rmr.onrender.com/users", {
       method: "post",
       body: JSON.stringify(data),
       headers: {
