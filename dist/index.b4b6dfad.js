@@ -28730,16 +28730,25 @@ const LoginView = ({ onLoggedIn })=>{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
-        }).then((response)=>response.json()).then((data)=>{
-            console.log("Login response: ", data);
-            if (data.user) {
-                localStorage.setItem("user", JSON.stringify(data.user));
-                localStorage.setItem("token", data.token);
-                onLoggedIn(data.user, data.token);
-            } else alert("No such user");
-        }).catch((e)=>{
-            alert("Something went wrong");
+        }).then((response)=>{
+            if (response.ok) onLoggedIn(username);
+            else alert("Login failed");
         });
+    // response.json()
+    // )
+    // .then((data) => {
+    //   console.log("Login response: ", data);
+    //   if (data.user) {
+    //     localStorage.setItem("user", JSON.stringify(data.user));
+    //     localStorage.setItem("token", data.token);
+    //     onLoggedIn(data.user, data.token);
+    //   } else {
+    //     alert("No such user");
+    //   }
+    // })
+    // .catch((e) => {
+    //   alert("Something went wrong");
+    // });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
         onSubmit: handleSubmit,
@@ -28753,13 +28762,13 @@ const LoginView = ({ onLoggedIn })=>{
                         onChange: (e)=>setUsername(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 43,
+                        lineNumber: 52,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 41,
+                lineNumber: 50,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -28771,13 +28780,13 @@ const LoginView = ({ onLoggedIn })=>{
                         onChange: (e)=>setPassword(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 51,
+                        lineNumber: 60,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 49,
+                lineNumber: 58,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -28785,13 +28794,13 @@ const LoginView = ({ onLoggedIn })=>{
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 57,
+                lineNumber: 66,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 40,
+        lineNumber: 49,
         columnNumber: 5
     }, undefined);
 };
@@ -28823,14 +28832,14 @@ const SignupView = ()=>{
     const [username, setUsername] = (0, _react.useState)("");
     const [password, setPassword] = (0, _react.useState)("");
     const [email, setEmail] = (0, _react.useState)("");
-    const [dateofbirth, setDateOfBirth] = (0, _react.useState)("");
+    const [birthdate, setBirthDate] = (0, _react.useState)("");
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
             userName: username,
             password: password,
-            email: email,
-            dateOfBirth: dateofbirth
+            Email: email,
+            birthDate: birthdate
         };
         fetch("https://movie-api-7rmr.onrender.com/users", {
             method: "post",
@@ -28911,7 +28920,7 @@ const SignupView = ()=>{
                     "DateOfBirth:",
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                         type: "date",
-                        value: dateofbirth,
+                        value: birthdate,
                         onChange: (e)=>setDateOfBirth(e.target.value),
                         required: true
                     }, void 0, false, {
@@ -28940,7 +28949,7 @@ const SignupView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(SignupView, "RtTYExWlgncp8u16AWnQiRLdCmc=");
+_s(SignupView, "bz8pzp2V0jpBSdSdByNkHwIQyxQ=");
 _c = SignupView;
 var _c;
 $RefreshReg$(_c, "SignupView");

@@ -4,7 +4,7 @@ export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [dateofbirth, setDateOfBirth] = useState("");
+  const [birthdate, setBirthDate] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -12,8 +12,8 @@ export const SignupView = () => {
     const data = {
       userName: username,
       password: password,
-      email: email,
-      dateOfBirth: dateofbirth,
+      Email: email,
+      birthDate: birthdate,
     };
     fetch("https://movie-api-7rmr.onrender.com/users", {
       method: "post",
@@ -67,7 +67,7 @@ export const SignupView = () => {
         DateOfBirth:
         <input
           type="date"
-          value={dateofbirth}
+          value={birthdate}
           onChange={(e) => setDateOfBirth(e.target.value)}
           required
         />

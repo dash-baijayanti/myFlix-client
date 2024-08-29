@@ -20,20 +20,29 @@ export const LoginView = ({ onLoggedIn }) => {
       },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Login response: ", data);
-        if (data.user) {
-          localStorage.setItem("user", JSON.stringify(data.user));
-          localStorage.setItem("token", data.token);
-          onLoggedIn(data.user, data.token);
-        } else {
-          alert("No such user");
-        }
-      })
-      .catch((e) => {
-        alert("Something went wrong");
-      });
+      .then((response) =>
+           {
+          if (response.ok) {
+            onLoggedIn(username);
+          } else {
+            alert("Login failed");
+          }
+        });
+        // response.json()
+      // )
+      // .then((data) => {
+      //   console.log("Login response: ", data);
+      //   if (data.user) {
+      //     localStorage.setItem("user", JSON.stringify(data.user));
+      //     localStorage.setItem("token", data.token);
+      //     onLoggedIn(data.user, data.token);
+      //   } else {
+      //     alert("No such user");
+      //   }
+      // })
+      // .catch((e) => {
+      //   alert("Something went wrong");
+      // });
   };
 
   return (
