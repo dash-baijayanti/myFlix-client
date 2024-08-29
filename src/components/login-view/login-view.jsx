@@ -3,14 +3,16 @@ import { useState } from "react";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
 
   const handleSubmit = (event) => {
     // this prevents the default behavior of the form which is to reload the entire page
     event.preventDefault();
 
     const data = {
-      access: username,
-      secret: password,
+      userName: username,
+      password: password,
+      // Email: email,
     };
 
     fetch("https://movie-api-7rmr.onrender.com/users", {
@@ -21,28 +23,27 @@ export const LoginView = ({ onLoggedIn }) => {
       body: JSON.stringify(data),
     })
       .then((response) =>
-           {
-          if (response.ok) {
-            onLoggedIn(username);
-          } else {
-            alert("Login failed");
-          }
-        });
-        // response.json()
-      // )
-      // .then((data) => {
-      //   console.log("Login response: ", data);
-      //   if (data.user) {
-      //     localStorage.setItem("user", JSON.stringify(data.user));
-      //     localStorage.setItem("token", data.token);
-      //     onLoggedIn(data.user, data.token);
-      //   } else {
-      //     alert("No such user");
-      //   }
-      // })
-      // .catch((e) => {
-      //   alert("Something went wrong");
-      // });
+        //   if (response.ok) {
+        //     onLoggedIn(username);
+        //   } else {
+        //     alert("Login failed");
+        //   }
+        // });
+        response.json()
+      )
+      .then((data) => {
+        console.log("Login response: ", data);
+        if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
+          onLoggedIn(data.user, data.token);
+        } else {
+          alert("No such user");
+        }
+      })
+      .catch((e) => {
+        alert("Something went wrong");
+      });
   };
 
   return (
@@ -63,6 +64,14 @@ export const LoginView = ({ onLoggedIn }) => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
+      {/* <label>
+        Email:
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </label> */}
       <button type="submit">Submit</button>
     </form>
   );

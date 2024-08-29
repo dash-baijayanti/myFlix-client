@@ -24,7 +24,8 @@ export const SignupView = () => {
     }).then((Response) => {
       if (Response.ok) {
         alert("Signup Successful");
-        Window.location.reload();
+        window.location.reload();
+        alert("welcome");
       } else {
         alert("Signup failed");
       }
@@ -68,7 +69,7 @@ export const SignupView = () => {
         <input
           type="date"
           value={birthdate}
-          onChange={(e) => setDateOfBirth(e.target.value)}
+          onChange={(e) => setBirthDate(e.target.value)}
           required
         />
       </label>
