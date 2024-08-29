@@ -28725,7 +28725,7 @@ const LoginView = ({ onLoggedIn })=>{
             userName: username,
             password: password
         };
-        fetch("https://movie-api-7rmr.onrender.com/users", {
+        fetch("https://movie-api-7rmr.onrender.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
