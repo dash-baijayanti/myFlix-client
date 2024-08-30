@@ -27408,7 +27408,7 @@ const MovieCard = ({ movieData, onMovieClick })=>{
         onClick: ()=>{
             onMovieClick(movieData);
         },
-        children: movieData.title
+        children: movieData.Title
     }, void 0, false, {
         fileName: "src/components/movie-card/movie-card.jsx",
         lineNumber: 4,
@@ -27418,18 +27418,18 @@ const MovieCard = ({ movieData, onMovieClick })=>{
 _c = MovieCard;
 (0, _propTypesDefault.default).MovieCard = {
     movieData: (0, _propTypesDefault.default).shape({
-        title: (0, _propTypesDefault.default).string.isRequired,
-        imageUrl: (0, _propTypesDefault.default).string.isRequired,
-        description: (0, _propTypesDefault.default).string.isRequired,
-        genre: (0, _propTypesDefault.default).shape({
-            name: (0, _propTypesDefault.default).string.isRequired,
-            description: (0, _propTypesDefault.default).string.isRequired
+        Title: (0, _propTypesDefault.default).string.isRequired,
+        ImageUrl: (0, _propTypesDefault.default).string.isRequired,
+        Description: (0, _propTypesDefault.default).string.isRequired,
+        Genre: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired,
+            Description: (0, _propTypesDefault.default).string.isRequired
         }),
-        director: (0, _propTypesDefault.default).shape({
-            name: (0, _propTypesDefault.default).string.isRequired,
-            bio: (0, _propTypesDefault.default).string.isRequired,
-            birthYear: (0, _propTypesDefault.default).string.isRequired,
-            deathYear: (0, _propTypesDefault.default).string.isRequired
+        Director: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired,
+            Bio: (0, _propTypesDefault.default).string.isRequired,
+            BirthYear: (0, _propTypesDefault.default).string.isRequired,
+            DeathYear: (0, _propTypesDefault.default).string.isRequired
         })
     }).isRequired,
     onBookClick: (0, _propTypesDefault.default).func.isRequired
@@ -28374,7 +28374,7 @@ const MovieView = ({ movieData, onBackClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                        src: movieData.imageUrl
+                        src: movieData.ImageUrl
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 6,
@@ -28401,7 +28401,7 @@ const MovieView = ({ movieData, onBackClick })=>{
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                            children: movieData.title
+                            children: movieData.Title
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 12,
@@ -28429,7 +28429,7 @@ const MovieView = ({ movieData, onBackClick })=>{
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                            children: movieData.description
+                            children: movieData.Description
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 18,
@@ -28457,7 +28457,7 @@ const MovieView = ({ movieData, onBackClick })=>{
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                            children: movieData.releaseDate
+                            children: movieData.ReleaseDate
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 24,
@@ -28485,7 +28485,7 @@ const MovieView = ({ movieData, onBackClick })=>{
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                            children: movieData.cast
+                            children: movieData.Cast
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 30,
@@ -28527,7 +28527,7 @@ const MovieView = ({ movieData, onBackClick })=>{
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                children: movieData.genre.name
+                                children: movieData.Genre.Name
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
                                 lineNumber: 39,
@@ -28549,7 +28549,7 @@ const MovieView = ({ movieData, onBackClick })=>{
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                children: movieData.genre.description
+                                children: movieData.Genre.Description
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
                                 lineNumber: 43,
@@ -28593,7 +28593,7 @@ const MovieView = ({ movieData, onBackClick })=>{
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                children: movieData.director.name
+                                children: movieData.Director.Name
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
                                 lineNumber: 53,
@@ -28616,7 +28616,7 @@ const MovieView = ({ movieData, onBackClick })=>{
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                children: movieData.director.bio
+                                children: movieData.Director.Bio
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
                                 lineNumber: 58,
@@ -28638,7 +28638,7 @@ const MovieView = ({ movieData, onBackClick })=>{
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                children: movieData.director.birthYear
+                                children: movieData.Director.BirthYear
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
                                 lineNumber: 62,
@@ -28660,7 +28660,7 @@ const MovieView = ({ movieData, onBackClick })=>{
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                children: movieData.director.deathYear
+                                children: movieData.Director.DeathYear
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
                                 lineNumber: 66,

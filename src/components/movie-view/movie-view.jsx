@@ -3,31 +3,31 @@ export const MovieView = ({ movieData, onBackClick }) => {
     <div>
       <div>
         <li>
-          <img src={movieData.imageUrl} />
+          <img src={movieData.ImageUrl} />
         </li>
       </div>
       <div>
         <li>
           <span>Title: </span>
-          <span>{movieData.title}</span>
+          <span>{movieData.Title}</span>
         </li>
       </div>
       <div>
         <li>
           <span> Description: </span>
-          <span>{movieData.description}</span>
+          <span>{movieData.Description}</span>
         </li>
       </div>
       <div>
         <li>
           <span>ReleaseDate</span>
-          <span>{movieData.releaseDate}</span>
+          <span>{movieData.ReleaseDate}</span>
         </li>
       </div>
       <div>
         <li>
           <span>Cast:</span>
-          <span>{movieData.cast}</span>
+          <span>{movieData.Cast}</span>
         </li>
       </div>
       <div>
@@ -36,11 +36,11 @@ export const MovieView = ({ movieData, onBackClick }) => {
         </span>
         <li>
           <span>Name: </span>
-          <span>{movieData.genre.name}</span>
+          <span>{movieData.Genre.Name}</span>
         </li>
         <li>
           <span>Description: </span>
-          <span>{movieData.genre.description}</span>
+          <span>{movieData.Genre.Description}</span>
         </li>
       </div>
       <div>
@@ -50,20 +50,20 @@ export const MovieView = ({ movieData, onBackClick }) => {
         <li>
           {" "}
           <span> Director Name:</span>
-          <span>{movieData.director.name}</span>
+          <span>{movieData.Director.Name}</span>
         </li>
         <li>
           {" "}
           <span>Bio: </span>
-          <span>{movieData.director.bio}</span>
+          <span>{movieData.Director.Bio}</span>
         </li>
         <li>
           <span>BirthYear: </span>
-          <span>{movieData.director.birthYear}</span>
+          <span>{movieData.Director.BirthYear}</span>
         </li>
         <li>
           <span> DeathYear: </span>
-          <span>{movieData.director.deathYear}</span>
+          <span>{movieData.Director.DeathYear}</span>
         </li>
       </div>
 
