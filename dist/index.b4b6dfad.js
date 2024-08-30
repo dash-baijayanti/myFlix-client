@@ -27279,7 +27279,9 @@ const MainView = ()=>{
             // });
             setMovies(movies);
         });
-    }, []);
+    }, [
+        token
+    ]);
     if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
@@ -28739,10 +28741,10 @@ const LoginView = ({ onLoggedIn })=>{
             // });
             response.json()).then((data)=>{
             console.log("Login response: ", data);
-            if (data.user) {
-                localStorage.setItem("user", JSON.stringify(data.user));
+            if (data.users) {
+                localStorage.setItem("user", JSON.stringify(data.users));
                 localStorage.setItem("token", data.token);
-                onLoggedIn(data.user, data.token);
+                onLoggedIn(data.users, data.token);
             } else alert("No such user");
         }).catch((e)=>{
             alert("Something went wrong");

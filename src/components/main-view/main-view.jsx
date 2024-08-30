@@ -44,7 +44,7 @@ export const MainView = () => {
         // });
         setMovies(movies);
       });
-  }, []);
+  }, [token]);
 
   if (!user) {
     return (
