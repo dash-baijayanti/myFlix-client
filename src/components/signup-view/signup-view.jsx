@@ -1,4 +1,13 @@
 import { useState } from "react";
+import {
+  Button,
+  Form,
+  Card,
+  CardGroup,
+  CardHeader,
+  CardFooter,
+  CardBody,
+} from "react-bootstrap";
 
 export const SignupView = () => {
   const [username, setUsername] = useState("");
@@ -32,49 +41,65 @@ export const SignupView = () => {
     });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength={3}
-        />
-      </label>
+    <CardGroup>
+      <Card>
+        <Form onSubmit={handleSubmit}>
+          <CardHeader>
+            <Card.Title> Sign-Up Form</Card.Title>
+          </CardHeader>
+          <CardBody>
+            <Form.Group controlId="formUserName">
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                minLength="3"
+                placeholder="Enter UserName"
+              />
+            </Form.Group>
 
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
+            <Form.Group controlId="formPassword">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="text"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Enter Password"
+              />
+            </Form.Group>
 
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
+            <Form.Group controlId="formEmail">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="Enter Email-Id"
+              />
+            </Form.Group>
 
-      <label>
-        DateOfBirth:
-        <input
-          type="date"
-          value={birthdate}
-          onChange={(e) => setBirthDate(e.target.value)}
-          required
-        />
-      </label>
+            <Form.Group controlId="formBirthDate">
+              <Form.Label>Birth Date:</Form.Label>
+              <Form.Control
+                type="date"
+                value={birthdate}
+                onChange={(e) => setBirthDate(e.target.value)}
+                required
+              />
+            </Form.Group>
+          </CardBody>
 
-      <button type="submit">Submit</button>
-    </form>
+          <CardFooter>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </CardFooter>
+        </Form>
+      </Card>
+    </CardGroup>
   );
 };

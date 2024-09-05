@@ -1,9 +1,18 @@
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import {
+  Form,
+  Card,
+  CardGroup,
+  CardBody,
+  CardFooter,
+  CardHeader,
+} from "react-bootstrap";
+// import Alert from "react-bootstrap/Alert";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [email, setEmail] = useState("");
 
   const handleSubmit = (event) => {
     // this prevents the default behavior of the form which is to reload the entire page
@@ -12,7 +21,6 @@ export const LoginView = ({ onLoggedIn }) => {
     const data = {
       userName: username,
       password: password,
-      // Email: email,
     };
 
     fetch("https://movie-api-7rmr.onrender.com/login", {
@@ -22,15 +30,7 @@ export const LoginView = ({ onLoggedIn }) => {
       },
       body: JSON.stringify(data),
     })
-      .then((response) =>
-        //   if (response.ok) {
-        //     onLoggedIn(username);
-        //   } else {
-        //     alert("Login failed");
-        //   }
-        // });
-        response.json()
-      )
+      .then((response) => response.json())
       .then((data) => {
         console.log("Login response: ", data);
         if (data.users) {
@@ -47,32 +47,45 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      {/* <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </label> */}
-      <button type="submit">Submit</button>
-    </form>
+    <CardGroup>
+      <Card>
+        <Form onSubmit={handleSubmit}>
+          <CardHeader>
+            <Card.Title>Login</Card.Title>
+          </CardHeader>
+
+          <CardBody>
+            <Form.Group controlId="formUsername">
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                minLength="3"
+                placeholder="Enter UserName"
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formPassword">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Enter Password"
+              />
+            </Form.Group>
+          </CardBody>
+
+          <CardFooter>
+            <Button variant="primary" type="submit">
+              Login
+            </Button>
+          </CardFooter>
+        </Form>
+      </Card>
+    </CardGroup>
   );
 };

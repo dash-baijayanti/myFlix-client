@@ -1,9 +1,11 @@
+import "./movie-view.scss";
+import Image from "react-bootstrap/Image";
 export const MovieView = ({ movieData, onBackClick }) => {
   return (
     <div>
       <div>
         <li>
-          <img src={movieData.ImageUrl} />
+          <Image src={movieData.ImageUrl} fluid rounded />
         </li>
       </div>
       <div>
@@ -67,7 +69,13 @@ export const MovieView = ({ movieData, onBackClick }) => {
         </li>
       </div>
 
-      <button onClick={onBackClick}>Back</button>
+      <button
+        onClick={onBackClick}
+        className="back-button"
+        style={{ cursor: "pointer" }}
+      >
+        Back
+      </button>
     </div>
   );
 };
