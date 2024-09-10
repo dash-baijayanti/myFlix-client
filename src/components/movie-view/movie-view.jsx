@@ -1,9 +1,16 @@
-import "./movie-view.scss";
+// import "./movie-view.scss";
 import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-export const MovieView = ({ movieData, onBackClick }) => {
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import "./movie-view.scss";
+export const MovieView = ({ movie, onBackClick }) => {
+  const { movieId } = useParams();
+
+  const movieData = movie.find((b) => b.id === movieId);
+
   return (
     <>
       <Image src={movieData.ImageUrl} fluid rounded />
@@ -97,15 +104,16 @@ export const MovieView = ({ movieData, onBackClick }) => {
           </Modal.Body>
         </Modal.Dialog>
       </div>
-
-      <Button
-        onClick={onBackClick}
-        className="btn btn-primary"
-        variant="info"
-        style={{ cursor: "pointer" }}
-      >
-        Back
-      </Button>
+      <Link to={`/`}>
+        <Button
+          // onClick={onBackClick}
+          className="back-button"
+          // variant="info"
+          // style={{ cursor: "pointer" }}
+        >
+          Back
+        </Button>
+      </Link>
     </>
   );
 };
