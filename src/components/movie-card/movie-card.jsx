@@ -13,15 +13,16 @@ export const MovieCard = ({ movieData }) => {
         <Card.Body>
           <Card.Title>{movieData.Title}</Card.Title>
           <Card.Text>{movieData.Description}</Card.Text>
-          <Link to={`/movies/${encodeURIComponent(movieData._id)}`} />
         </Card.Body>
         <Card.Footer>
-          <Button
-            // onClick={() => onMovieClick(movieData)}
-            variant="link"
-          >
-            Open
-          </Button>
+          <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
+            <Button
+              // onClick={() => onMovieClick(movieData)}
+              variant="link"
+            >
+              Open
+            </Button>
+          </Link>
         </Card.Footer>
       </Card>
     </CardGroup>

@@ -9,7 +9,7 @@ import "./movie-view.scss";
 export const MovieView = ({ movies, onBackClick }) => {
   const { movieId } = useParams();
 
-  const movieData = movies.find((b) => b.id === movieId);
+  const movieData = movies.find((b) => b._id === movieId);
 
   return (
     <>
