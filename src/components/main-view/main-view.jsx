@@ -86,7 +86,7 @@ export const MainView = () => {
             </Col> */}
 
           <Route
-            path="/movies/:movieId"
+            path="/movies/movieId"
             element={
               <>
                 {!user ? (
@@ -95,7 +95,7 @@ export const MainView = () => {
                   <Col>It's empty.</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView movieData={selectedMovie} />
+                    <MovieView movies={movies} />
                   </Col>
                 )}
               </>
