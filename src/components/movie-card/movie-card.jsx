@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 import "./movie-card.scss";
 export const MovieCard = ({ movieData }) => {
   return (
-    <CardGroup>
-      <Card className="h-100">
+    <CardGroup className="h-100">
+      <Card>
         <Card.Img variant="top" src={movieData.ImageUrl} rounded />
         <Card.Body>
           <Card.Title>{movieData.Title}</Card.Title>
-          <Card.Text>{movieData.Description}</Card.Text>
+          {/* <Card.Text>{movieData.Description}</Card.Text> */}
           <Link to={`/movies/${encodeURIComponent(movieData._id)}`} />
         </Card.Body>
         <Card.Footer>
