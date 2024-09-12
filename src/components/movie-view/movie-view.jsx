@@ -12,7 +12,7 @@ export const MovieView = ({ movies }) => {
   const movieData = movies.find((b) => b._id === movieId);
   return (
     <>
-      <Image src={movieData.ImageUrl} fluid rounded />
+      <Image src={movieData.ImageUrl} fluid />
 
       <ListGroup>
         <ListGroup.Item>

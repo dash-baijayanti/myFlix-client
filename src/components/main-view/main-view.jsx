@@ -30,6 +30,22 @@ export const MainView = () => {
       });
   }, [token]);
 
+  const onLoggedIn = (user, token) => {
+    setUser(user);
+    setToken(token);
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
+  };
+  const onLoggedOut = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.clear();
+  };
+  const updatedUser = (user) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
   return (
     <BrowserRouter>
       <NavigationBar
@@ -42,7 +58,22 @@ export const MainView = () => {
         <Routes>
           <Route
             path="/users/:userName"
-            element={<ProfileView></ProfileView>}
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={5}>
+                    <ProfileView
+                      user={user}
+                      token={token}
+                      // updatedUser={updatedUser}
+                      onLoggedOut={() => setUser(null)}
+                    />
+                  </Col>
+                )}
+              </>
+            }
           />
           <Route
             path="/signup"
@@ -107,7 +138,7 @@ export const MainView = () => {
                 ) : (
                   <>
                     {movies.map((movie) => (
-                      <Col className="mb-2" key={movie.id} md={2}>
+                      <Col className="mb-2" key={movie._id} md={2}>
                         <MovieCard movieData={movie} />
                       </Col>
                     ))}

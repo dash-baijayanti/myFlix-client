@@ -1,45 +1,51 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
+import React from "react";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import UserInfo from "./user-info";
-import UpdateUser from "./update-user";
-import FavoriteMovies from "./favorite-movies";
 
-import axios from "axios";
-
-export const ProfileView = ({  }) => {
-  const  { userName } = useParams();
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    // Fetch user information from the /users endpoint
-    axios
-      .get("/users")
+export const ProfileView = ({ user, token, onLoggedOut }) => {
+  console.log(user);
+  const handleProfileDelete = () => {
+    if (!user.userName) {
+      return;
+    }
+    fetch(`https://movie-api-7rmr.onrender.com/users/${user.userName}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
-        // Find the user by the username passed as a prop
-        const userData = response.data.find((u) => u.username === userName);
-        setUser(userData);
+        console.log(response);
+        if (response.ok) {
+          console.log("Account deleted successfully!");
+          onLoggedOut();
+        } else {
+          alert("Failed to delete account!");
+        }
       })
       .catch((error) => {
-        console.error("Error fetching user data:", error);
+        console.error("Error deleting account:", error);
+        alert("An error occurred while trying to delete the account.");
       });
-  }, [userName]);
-
-  if (!user) {
-    return <div>Loading...</div>;
-  }
+  };
 
   return (
-    <div className="profile-view">
-      <h1>{user.userName}'s Profile</h1>
-      <div>
-        <p>
-          <strong>Email:</strong> {user.Email}
-        </p>
-        {/* <p><strong>Birthday:</strong> {new Date(user.birthday).toLocaleDateString()}</p> */}
-      </div>
-      {/* <UserInfo /> */}
-      {/* Add update profile functionality here */}
-    </div>
+    <Container>
+      <Row className="justify-content-center">
+        <Col>
+          <Card>
+            <Card.Header>
+              <UserInfo name={user.userName} email={user.Email} />
+            </Card.Header>
+            <Card.Body>
+              <Button variant="danger" onClick={handleProfileDelete}>
+                Delete Account
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
