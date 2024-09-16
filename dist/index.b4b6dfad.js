@@ -27457,6 +27457,8 @@ const MainView = ()=>{
                                             className: "mb-2",
                                             md: 2,
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                                token: token,
+                                                user: user,
                                                 movieData: movie
                                             }, void 0, false, {
                                                 fileName: "src/components/main-view/main-view.jsx",

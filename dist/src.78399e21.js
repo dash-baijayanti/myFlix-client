@@ -56441,6 +56441,11 @@ var MovieCard = exports.MovieCard = function MovieCard(_ref) {
       console.error("Error adding movie to favorites:", error);
     });
   };
+
+  // Defensive check for movieData
+  if (!movieData || !movieData.ImageUrl) {
+    return /*#__PURE__*/_react.default.createElement("div", null, "Movie data is not available"); // Or handle this case in another way
+  }
   return /*#__PURE__*/_react.default.createElement(_CardGroup.default, {
     className: "h-100"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Img, {
@@ -56455,11 +56460,11 @@ var MovieCard = exports.MovieCard = function MovieCard(_ref) {
     variant: "link"
   }, "Open"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
     onClick: function onClick() {
-      return handleAddToFavorites(movie._id);
+      return handleAddToFavorites(movieData._id);
     }
   }, "Add to Favorites"))));
 };
-MovieCard.PropTypes = {
+MovieCard.propTypes = {
   movieData: _propTypes.default.shape({
     _id: _propTypes.default.string.isRequired,
     Title: _propTypes.default.string.isRequired,
@@ -57203,6 +57208,8 @@ var MainView = exports.MainView = function MainView() {
         key: movie._id,
         md: 2
       }, /*#__PURE__*/React.createElement(_movieCard.MovieCard, {
+        token: token,
+        user: user,
         movieData: movie
       }));
     })))
@@ -57268,7 +57275,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53031" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55063" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
