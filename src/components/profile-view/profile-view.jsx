@@ -19,6 +19,9 @@ export const ProfileView = ({
 
   // Fetch movies from the API
   useEffect(() => {
+    console.log(favoriteMovieList);
+    console.log("Movies data:", movies);
+    console.log("User's favorite movies:", favoriteMovieList);
     fetch("https://movie-api-7rmr.onrender.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -33,8 +36,13 @@ export const ProfileView = ({
       });
   }, [token]);
 
-  const handleMovieAdded = (updatedFavoriteMovies) => {
-    setFavoriteMovies(updatedFavoriteMovies); // Update the favorite movies in state
+  // Filter out favorite movies from the movie list
+  // const favoriteMoviesData = movies.filter((movie) =>
+  //   favoriteMovies.includes(movie._id)
+  // );
+
+  const handleMovieAdded = (favoriteMovies) => {
+    console.log("Updated favorite movies:", favoriteMovies);
   };
 
   const handleProfileDelete = () => {
@@ -81,7 +89,10 @@ export const ProfileView = ({
           {/* fav movies */}
           <Card>
             <Card.Header>
-              <FavoriteMovies favoriteMovieList={favoriteMovieList} />
+              <FavoriteMovies
+                user={user}
+                favoriteMovieList={user.favoriteMovies || []}
+              />
             </Card.Header>
           </Card>
         </Col>

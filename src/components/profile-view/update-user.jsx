@@ -6,10 +6,10 @@ import PropTypes from "prop-types";
 export const UpdateUser = ({ user, updatedUser }) => {
   const token = localStorage.getItem("token");
 
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(user.userName || "");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [email, setEmail] = useState(user.Email || "");
+  const [birthday, setBirthday] = useState(user.birthDate || "");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,7 +30,7 @@ export const UpdateUser = ({ user, updatedUser }) => {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.ok) {
           console.log("Update successful!");
           return response.json();
@@ -44,6 +44,7 @@ export const UpdateUser = ({ user, updatedUser }) => {
         setPassword(data.password);
         setEmail(data.Email);
         setBirthday(data.birthDate);
+        alert("Profile updated successfully!");
         window.location.reload();
       })
       .catch((e) => {
@@ -55,13 +56,12 @@ export const UpdateUser = ({ user, updatedUser }) => {
       <Card>
         <h2>Want To Change some info?</h2>
         <Form className="profile-form" onSubmit={(e) => handleSubmit(e)}>
-          <Form.Group contolId="formUsername">
+          <Form.Group controlId="formUsername">
             <Form.Label>Username:</Form.Label>
             <Form.Control
               type="text"
-              name="userName"
-              defaultValue={user.userName}
-              onChange={(e) => handleUpdate(e)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
 
@@ -69,9 +69,8 @@ export const UpdateUser = ({ user, updatedUser }) => {
             <Form.Label>Password:</Form.Label>
             <Form.Control
               type="password"
-              name="password"
-              defaultValue={user.password}
-              onChange={(e) => handleUpdate(e)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
 
@@ -79,9 +78,17 @@ export const UpdateUser = ({ user, updatedUser }) => {
             <Form.Label>Email:</Form.Label>
             <Form.Control
               type="email"
-              name="Email"
-              defaultValue={user.Email}
-              onChange={(e) => handleUpdate(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formBirthday">
+            <Form.Label>Birthday:</Form.Label>
+            <Form.Control
+              type="date"
+              value={birthday}
+              onChange={(e) => setBirthday(e.target.value)}
             />
           </Form.Group>
 
@@ -95,6 +102,11 @@ export const UpdateUser = ({ user, updatedUser }) => {
 };
 
 UpdateUser.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.shape({
+    userName: PropTypes.string.isRequired,
+    password: PropTypes.string,
+    Email: PropTypes.string,
+    birthDate: PropTypes.string,
+  }).isRequired,
   updatedUser: PropTypes.func.isRequired,
 };

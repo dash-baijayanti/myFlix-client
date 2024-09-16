@@ -8,8 +8,11 @@ export const FavoriteMovies = ({ user, favoriteMovieList }) => {
 
   // Set favoriteMovies state when user changes
   useEffect(() => {
-    if (user) {
-      setFavoriteMovies(user.favoriteMovies || []);
+    console.log(user.favoriteMovies);
+    console.log("Favorite Movies State:", favoriteMovies);
+
+    if (user && user.favoriteMovies) {
+      setFavoriteMovies(user.favoriteMovies);
     }
   }, [user]);
 
@@ -17,20 +20,27 @@ export const FavoriteMovies = ({ user, favoriteMovieList }) => {
   const removeFav = (movieId) => {
     const updatedMovies = favoriteMovies.filter((id) => id !== movieId);
     setFavoriteMovies(updatedMovies);
-    // You can also call a backend API here to update the user favorites on the server
+    // Call a backend API to update the user's favorite movies on the server
   };
+
+  // Check if user and favoriteMovieList are defined before rendering
+  if (!user) {
+    return <p>Loading user data...</p>;
+  }
 
   return (
     <div>
       <h2>Favorite Movies</h2>
       {favoriteMovieList && favoriteMovieList.length > 0 ? (
-        favoriteMovieList.map((movies) => (
-          <div key={movies._id}>
-            <Image src={movies.ImagePath} />
-            <Link to={`/movies/${movies._id}`}>
-              <h4>{movies.Title}</h4>
+        favoriteMovieList.map((movie) => (
+          <div key={movie._id}>
+            <Image src={movie.ImageUrl} alt={movie.Title} />
+            <Link to={`/movies/${movie._id}`}>
+              <h4>{movie.Title}</h4>
             </Link>
-            <Button onClick={() => removeFav(movies._id)}>Remove From List</Button>
+            <Button onClick={() => removeFav(movie._id)}>
+              Remove From List
+            </Button>
           </div>
         ))
       ) : (
@@ -42,6 +52,21 @@ export const FavoriteMovies = ({ user, favoriteMovieList }) => {
 
 // PropTypes validation
 FavoriteMovies.propTypes = {
-  user: PropTypes.object.isRequired,
-  favoriteMovieList: PropTypes.array.isRequired
+  user: PropTypes.shape({
+    favoriteMovies: PropTypes.arrayOf(PropTypes.string), // Make optional
+  }),
+  favoriteMovieList: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      Title: PropTypes.string.isRequired,
+      ImageUrl: PropTypes.string.isRequired,
+    })
+  ),
+};
+
+FavoriteMovies.defaultProps = {
+  user: {
+    favoriteMovies: [],
+  },
+  favoriteMovieList: [],
 };
