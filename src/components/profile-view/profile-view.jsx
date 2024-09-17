@@ -4,46 +4,70 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import UserInfo from "./user-info";
 import { FavoriteMovies } from "./favorite-movies";
 import { UpdateUser } from "./update-user";
-import { MovieCard } from "../movie-card/movie-card";
+// import { RemoveFavoriteMovies } from "./remove-favorite-movies";
 
-export const ProfileView = ({
-  user,
-  token,
-  updatedUser,
-  onLoggedOut,
-  favoriteMovieList,
-}) => {
-  const [favoriteMovies, setFavoriteMovies] = useState(favoriteMovieList || []);
+export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
+  // const [removeFavoriteList, setRemoveFavoriteList] = useState( removeFavoriteList || []);
+  const [favoriteMovies, setFavoriteMovies] = useState(user.favMovies || []);
   const [movies, setMovies] = useState([]); // State to store movies
   const [loading, setLoading] = useState(true); // State to manage loading
 
   // Fetch movies from the API
   useEffect(() => {
-    console.log(favoriteMovieList);
-    console.log("Movies data:", movies);
-    console.log("User's favorite movies:", favoriteMovieList);
+    console.log("User data:", user); // Debug user object
+    console.log("Favorite movies:", user.favMovies);
+
     fetch("https://movie-api-7rmr.onrender.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch movies");
+        }
+        return response.json();
+      })
       .then((data) => {
-        setMovies(data); // Set the fetched movies
-        setLoading(false); // Set loading to false after movies are loaded
+        console.log("Fetched movies:", data); // Debug the data coming in
+        setMovies(data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching movies:", error);
-        setLoading(false); // Set loading to false on error
+        setLoading(false);
       });
   }, [token]);
 
-  // Filter out favorite movies from the movie list
-  // const favoriteMoviesData = movies.filter((movie) =>
-  //   favoriteMovies.includes(movie._id)
-  // );
-
-  const handleMovieAdded = (favoriteMovies) => {
-    console.log("Updated favorite movies:", favoriteMovies);
+  // Function to handle removing a movie from favorites
+  const handleRemoveFavorites = (movieId) => {
+    const updatedFavorites = favoriteMovies.filter((id) => id !== movieId);
+    setFavoriteMovies(updatedFavorites);
+    fetch(
+      `https://movie-api-7rmr.onrender.com/users/${user.userName}/movies/${movieId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          console.log("Movie removed from favorites successfully!");
+        } else {
+          alert("Failed to remove movie from favorites");
+        }
+      })
+      .catch((error) => {
+        console.error("Error removing movie from favorites:", error);
+        alert("An error occurred while trying to remove the movie.");
+      });
   };
+
+  // Filter out favorite movies from the movie list
+  const favoriteMoviesData = movies.filter((movie) =>
+    favoriteMovies.includes(movie._id)
+  );
 
   const handleProfileDelete = () => {
     if (!user.userName) {
@@ -86,41 +110,13 @@ export const ProfileView = ({
               </Button>
             </Card.Body>
           </Card>
-          {/* fav movies */}
-          <Card>
-            <Card.Header>
-              <FavoriteMovies
-                user={user}
-                favoriteMovieList={user.favoriteMovies || []}
-              />
-            </Card.Header>
-          </Card>
         </Col>
-        {/* Display Movie List to Add to Favorites */}
-        <Row>
-          {loading ? (
-            <p>Loading movies...</p>
-          ) : movies && movies.length > 0 ? (
-            movies.map((movie) => (
-              <Col key={movie._id}>
-                <MovieCard
-                  movie={movie}
-                  user={user}
-                  token={token}
-                  onMovieAdded={handleMovieAdded}
-                />
-              </Col>
-            ))
-          ) : (
-            <p>No movies available to display</p>
-          )}
-        </Row>
 
         <Card>
           <Card.Body>
-            <UpdateUser user={user} token={token} updatedUser={updatedUser} />
+            <UpdateUser user={user} updatedUser={updatedUser} />
           </Card.Body>
-          <Card.Body>
+          {/* <Card.Body>
             <Button
               variant="danger"
               onClick={() => {
@@ -129,7 +125,34 @@ export const ProfileView = ({
             >
               Delete account
             </Button>
-          </Card.Body>
+          </Card.Body> */}
+        </Card>
+
+        <Card className="mb-4">
+          <Card.Header>
+            <FavoriteMovies
+              user={user}
+              favoriteMovieList={favoriteMoviesData}
+              onRemove={handleRemoveFavorites}
+            />
+          </Card.Header>
+          {/* <Card.Body>
+            {favoriteMoviesData.length > 0 ? (
+              favoriteMoviesData.map((movie) => (
+                <div key={movie._id}>
+                  <h5>{movie.title}</h5>
+                  <Button
+                    variant="danger"
+                    onClick={() => handleRemoveFavorites(movie._id)}
+                  >
+                    Remove From List
+                  </Button>
+                </div>
+              ))
+            ) : (
+              <p>You have no favorite movies added yet.</p>
+            )}
+          </Card.Body> */}
         </Card>
       </Row>
     </Container>

@@ -93,7 +93,7 @@ export const UpdateUser = ({ user, updatedUser }) => {
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            Update
+            Update Account
           </Button>
         </Form>
       </Card>
