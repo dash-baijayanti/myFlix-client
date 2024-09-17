@@ -4,51 +4,57 @@ import { Card, Image, Row, Col, Figure } from "react-bootstrap";
 import { RemoveFavoriteMovies } from "./remove-favorite-movies";
 import PropTypes from "prop-types";
 
-export const FavoriteMovies = ({ user, favoriteMovieList }) => {
-  const [favoriteMovies, setFavoriteMovies] = useState(user.favMovies || []);
+export const FavoriteMovies = ({ user, favoriteMovieList, onRemove }) => {
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
-  // Set favoriteMovies state when user changes
+  // Set favoriteMovies state when favoriteMovieList changes
   useEffect(() => {
-    console.log(user.favoriteMovies);
-    console.log("Favorite Movies State:", favoriteMovies);
-
-    if (user && user.favoriteMovies) {
-      setFavoriteMovies(user.favoriteMovies);
-    }
-  }, [user]);
+    setFavoriteMovies(favoriteMovieList);
+  }, [favoriteMovieList]);
 
   // Function to remove a favorite movie from the list
   const removeFav = (movieId) => {
-    const updatedMovies = favoriteMovies.filter((id) => id !== movieId);
+    onRemove(movieId);
+    const updatedMovies = favoriteMovies.filter(
+      (movie) => movie._id !== movieId
+    );
     setFavoriteMovies(updatedMovies);
     // Call a backend API to update the user's favorite movies on the server
   };
 
   // Check if user and favoriteMovieList are defined before rendering
-  if (!user || !favoriteMovieList) {
+  if (!user || !favoriteMovies) {
     return <p>Loading user data...</p>;
   }
 
   return (
-    <Card>
-      <Card.Body>
+    <Card className="h-100">
+      <Card.Header>
         <Row>
           <Col>
             <h2>Favorite Movies</h2>
           </Col>
         </Row>
+      </Card.Header>
+      <Card.Body>
         <Row>
-          {favoriteMovieList && favoriteMovieList.length > 0 ? (
-            favoriteMovieList.map((movie) => (
-              <Col xs={12} md={6} lg={3} key={movie._id} className="fav-movie">
+          {favoriteMovies && favoriteMovies.length > 0 ? (
+            favoriteMovies.map((movie) => (
+              <Col md={6} lg={3} key={movie._id} className="fav-movie">
                 <Figure>
                   <Link to={`/movies/${movie._id}`}>
                     {/* <h4>{movie.Title}</h4> */}
                   </Link>
-                  <Figure.Image src={movie.ImageUrl} alt={movie.Title} />
+                  <div className="pic">
+                    <Figure.Image
+                      src={movie.ImageUrl}
+                      alt={movie.Title}
+                      fluidroundedCircle
+                    />
+                  </div>
                   <RemoveFavoriteMovies
                     movieId={movie._id}
-                    onRemove={removeFav} // Pass the remove function
+                    onRemove={() => removeFav(movie._id)} // Pass the remove function
                   />
                   <Figure.Caption>{movie.Title}</Figure.Caption>
                 </Figure>

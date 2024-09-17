@@ -97,7 +97,7 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
 
   return (
     <Container>
-      <Row className="justify-content-center">
+      <Row className="justify-content-center" w-100>
         <Col>
           {/* user info */}
           <Card>
@@ -116,43 +116,16 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
           <Card.Body>
             <UpdateUser user={user} updatedUser={updatedUser} />
           </Card.Body>
-          {/* <Card.Body>
-            <Button
-              variant="danger"
-              onClick={() => {
-                ProfileDelete();
-              }}
-            >
-              Delete account
-            </Button>
-          </Card.Body> */}
         </Card>
 
-        <Card className="mb-4">
-          <Card.Header>
+        <Card className="mb-2">
+          <Card.Body>
             <FavoriteMovies
               user={user}
               favoriteMovieList={favoriteMoviesData}
               onRemove={handleRemoveFavorites}
             />
-          </Card.Header>
-          {/* <Card.Body>
-            {favoriteMoviesData.length > 0 ? (
-              favoriteMoviesData.map((movie) => (
-                <div key={movie._id}>
-                  <h5>{movie.title}</h5>
-                  <Button
-                    variant="danger"
-                    onClick={() => handleRemoveFavorites(movie._id)}
-                  >
-                    Remove From List
-                  </Button>
-                </div>
-              ))
-            ) : (
-              <p>You have no favorite movies added yet.</p>
-            )}
-          </Card.Body> */}
+          </Card.Body>
         </Card>
       </Row>
     </Container>
