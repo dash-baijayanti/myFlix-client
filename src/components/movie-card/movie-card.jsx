@@ -4,7 +4,12 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./movie-card.scss";
 
-export const MovieCard = ({ movieData, user, token, onMovieAdded = () => {} }) => {
+export const MovieCard = ({
+  movieData,
+  user,
+  token,
+  onMovieAdded = () => {},
+}) => {
   const handleAddToFavorites = async (movieId) => {
     try {
       const response = await fetch(
@@ -37,7 +42,6 @@ export const MovieCard = ({ movieData, user, token, onMovieAdded = () => {} }) =
   }
 
   return (
-<<<<<<< HEAD
     <CardGroup>
       <Card className="h-100">
         <Card.Img variant="top" src={movieData.ImageUrl} rounded />
@@ -57,22 +61,6 @@ export const MovieCard = ({ movieData, user, token, onMovieAdded = () => {} }) =
         </Card.Footer>
       </Card>
     </CardGroup>
-=======
-    <Card className="h-100">
-      <Card.Img variant="top" src={movieData.ImageUrl} alt={movieData.Title} />
-      <Card.Body>
-        <Card.Title>{movieData.Title}</Card.Title>
-        <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
-          <Button variant="link">Open</Button>
-        </Link>
-      </Card.Body>
-      <Card.Footer>
-        <Button variant="primary" onClick={() => handleAddToFavorites(movieData._id)}>
-          Add to Favorites
-        </Button>
-      </Card.Footer>
-    </Card>
->>>>>>> clientside_routing
   );
 };
 
