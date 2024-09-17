@@ -6,14 +6,14 @@ import Modal from "react-bootstrap/Modal";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "./movie-view.scss";
-export const MovieView = ({ movies, onBackClick }) => {
+export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
 
-  const movieData = movies.find((b) => b._id === movieId);
+  const movieData = movies.find((b) => b.id === movieId);
 
   return (
     <>
-      <Image src={movieData.ImageUrl} fluid rounded />
+      <Image src={movieData.ImageUrl} fluid />
 
       <ListGroup>
         <ListGroup.Item>

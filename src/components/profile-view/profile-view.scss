@@ -1,0 +1,35 @@
+.fav-movie {
+  margin-bottom: 10px;
+  figure {
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    margin: auto;
+    img {
+      height: 400px;
+      display: block;
+      margin: auto;
+    }
+    figcaption {
+      text-align: center;
+    }
+  }
+  button.btn {
+    display: block;
+    margin: auto;
+  }
+}
+.card {
+  margin-bottom: 15px;
+}
+.col {
+  width: 100%;
+}
+.pic {
+  display: grid;
+  height: 400px;
+  display: block;
+  margin: auto;
+}

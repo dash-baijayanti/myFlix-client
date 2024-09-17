@@ -1,8 +1,10 @@
 import { createRoot } from "react-dom/client";
 import { MainView } from "./components/main-view/main-view";
+var parcelRequire;
 
 import Container from "react-bootstrap/Container";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 // import statement to indicate that you need bundle './index.scss'
 import "./index.scss";
 

@@ -3,15 +3,17 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
+
+import { Row, Col } from "react-bootstrap";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 export const MainView = () => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
+  // const storedUser = JSON.parse(localStorage.getItem("user"));
+  // const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  // const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
@@ -28,10 +30,51 @@ export const MainView = () => {
       });
   }, [token]);
 
+  const onLoggedIn = (user, token) => {
+    setUser(user);
+    setToken(token);
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
+  };
+  const onLoggedOut = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.clear();
+  };
+  const updatedUser = (user) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
   return (
     <BrowserRouter>
+      <NavigationBar
+        user={user}
+        onLoggedOut={() => {
+          setUser(null);
+        }}
+      />
       <Row className="justify-content-md-center">
         <Routes>
+          <Route
+            path="/users/:userName"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={5}>
+                    <ProfileView
+                      user={user}
+                      token={token}
+                      // updatedUser={updatedUser}
+                      onLoggedOut={() => setUser(null)}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          />
           <Route
             path="/signup"
             element={
@@ -46,16 +89,6 @@ export const MainView = () => {
               </>
             }
           />
-          {/* {!user ? (
-            <Col md={5}>
-              <LoginView
-                onLoggedIn={(user, token) => {
-                  setUser(user);
-                  setToken(token);
-                }}
-              />
-              or <SignupView />
-            </Col>*/}
 
           <Route
             path="/login"
@@ -76,17 +109,9 @@ export const MainView = () => {
               </>
             }
           />
-          {/* ) : selectedMovie ? (
-            <Col md={9} style={{ border: "1px solid black" }}>
-              <MovieView
-                style={{ border: "2px solid green" }}
-                movieData={selectedMovie}
-                onBackClick={() => setSelectedMovie(null)}
-              />
-            </Col> */}
 
           <Route
-            path="/movies/movieId"
+            path="/movies/:movieId"
             element={
               <>
                 {!user ? (
@@ -101,23 +126,6 @@ export const MainView = () => {
               </>
             }
           />
-          {/* ) : movies.length === 0 ? (
-            <div>It's empty.</div>
-          ) : (
-            <>
-              {movies.map((movie) => (
-                <Col className="mb-5" key={movie.id} md={3}>
-                  <MovieCard
-                    key={movie.id}
-                    movieData={movie}
-                    onMovieClick={(newSelectedMovie) => {
-                      setSelectedMovie(newSelectedMovie);
-                    }}
-                  />
-                </Col>
-              ))}
-            </>
-          )} */}
 
           <Route
             path="/"
@@ -130,8 +138,8 @@ export const MainView = () => {
                 ) : (
                   <>
                     {movies.map((movie) => (
-                      <Col className="mb-5" key={movie.id} md={3}>
-                        <MovieCard movieData={movie} />
+                      <Col className="mb-2" key={movie._id} md={2}>
+                        <MovieCard  token={token} user={user} movieData={movie}  />
                       </Col>
                     ))}
                   </>
