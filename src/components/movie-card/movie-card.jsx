@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FavoriteMovies } from "../profile-view/favorite-movies";
 import "./movie-card.scss";
 
 export const MovieCard = ({
@@ -42,25 +43,30 @@ export const MovieCard = ({
   }
 
   return (
-    <CardGroup>
-      <Card className="h-100">
-        <Card.Img variant="top" src={movieData.ImageUrl} rounded />
-        <Card.Body>
-          <Card.Title>{movieData.Title}</Card.Title>
-          <Card.Text>{movieData.Description}</Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
-            <Button
-              // onClick={() => onMovieClick(movieData)}
-              variant="link"
-            >
-              Open
-            </Button>
-          </Link>
-        </Card.Footer>
-      </Card>
-    </CardGroup>
+    <Card className="h-100">
+      <Card.Img variant="top" src={movieData.ImageUrl} rounded />
+      <Card.Body>
+        <Card.Title>{movieData.Title}</Card.Title>
+        {/* <Card.Text>{movieData.Description}</Card.Text> */}
+      </Card.Body>
+      <Card.Footer>
+        <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
+          <Button
+            // onClick={() => onMovieClick(movieData)}
+            variant="link"
+          >
+            View Movie
+          </Button>
+        </Link>
+
+        <Button
+          variant="primary"
+          onClick={() => handleAddToFavorites(movieData._id)}
+        >
+          Add to Favorites
+        </Button>
+      </Card.Footer>
+    </Card>
   );
 };
 

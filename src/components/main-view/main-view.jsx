@@ -10,8 +10,8 @@ import { Row, Col } from "react-bootstrap";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 export const MainView = () => {
-  // const storedUser = JSON.parse(localStorage.getItem("user"));
-  // const storedToken = localStorage.getItem("token");
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
   // const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(null);
@@ -139,7 +139,11 @@ export const MainView = () => {
                   <>
                     {movies.map((movie) => (
                       <Col className="mb-2" key={movie._id} md={2}>
-                        <MovieCard  token={token} user={user} movieData={movie}  />
+                        <MovieCard
+                          token={token}
+                          user={user}
+                          movieData={movie}
+                        />
                       </Col>
                     ))}
                   </>
