@@ -44,7 +44,7 @@ export const MovieCard = ({
 
   return (
     <Card className="h-100">
-      <Card.Img variant="top" src={movieData.ImageUrl} rounded />
+      <Card.Img variant="top" src={movieData.ImageUrl} />
       <Card.Body>
         <Card.Title>{movieData.Title}</Card.Title>
         {/* <Card.Text>{movieData.Description}</Card.Text> */}
