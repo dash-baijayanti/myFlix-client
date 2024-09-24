@@ -12,6 +12,10 @@ export const MovieCard = ({
   onMovieAdded = () => {},
 }) => {
   const handleAddToFavorites = async (movieId) => {
+    if (!user || !user.userName) {
+      alert("User is not defined or doesn't have a userName.");
+      return;
+    }
     try {
       const response = await fetch(
         `https://movie-api-7rmr.onrender.com/users/${user.userName}/movies/${movieId}`,
@@ -51,10 +55,7 @@ export const MovieCard = ({
       </Card.Body>
       <Card.Footer>
         <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
-          <Button
-            // onClick={() => onMovieClick(movieData)}
-            variant="link"
-          >
+          <Button onClick={() => onMovieClick(movieData)} variant="link">
             View Movie
           </Button>
         </Link>

@@ -8,8 +8,11 @@ import { Link } from "react-router-dom";
 import "./movie-view.scss";
 export const MovieView = ({ movies, onBackClick }) => {
   const { movieId } = useParams();
-
   const movieData = movies.find((b) => b._id === movieId);
+
+  if (!movieData) {
+    return <div>Movie not found</div>;
+  }
 
   return (
     <>
@@ -106,10 +109,10 @@ export const MovieView = ({ movies, onBackClick }) => {
       </div>
       <Link to={`/`}>
         <Button
-          // onClick={onBackClick}
+          onClick={onBackClick}
           className="back-button"
           // variant="info"
-          // style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer" }}
         >
           Back
         </Button>
