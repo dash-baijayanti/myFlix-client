@@ -193,6 +193,8 @@ export const MainView = () => {
                           >
                             <MovieCard
                               movieData={movie}
+                              user={user}
+                              token={token}
                               isFavorite={user?.FavoriteMovies?.includes(
                                 movie._id
                               )}
