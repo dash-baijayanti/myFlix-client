@@ -95,11 +95,11 @@ export const SignupView = () => {
           </CardBody>
 
           <CardFooter>
-            <Row className="justify-content-md-center">
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Row>
+            {/* <Row className="justify-content-md-center"> */}
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+            {/* </Row> */}
           </CardFooter>
         </Form>
       </Card>

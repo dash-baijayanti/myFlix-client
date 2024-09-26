@@ -142,11 +142,15 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
               <UserInfo name={user.userName} email={user.Email} />
             </Card.Header>
             <Card.Body>
-              <Row className="justify-content-md-center">
-                <Button variant="danger" onClick={handleProfileDelete}>
-                  Delete Account
-                </Button>
-              </Row>
+              {/* <Row className="justify-content-md-center"> */}
+              <Button
+                className="updateAccount"
+                variant="danger"
+                onClick={handleProfileDelete}
+              >
+                Delete Account
+              </Button>
+              {/* </Row> */}
             </Card.Body>
           </Card>
         </Col>

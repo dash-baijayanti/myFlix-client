@@ -84,7 +84,7 @@ export const MainView = () => {
                 !user ? (
                   <Navigate to="/login" replace />
                 ) : (
-                  <Col>
+                  <Col md={6}>
                     <ProfileView
                       user={user}
                       token={token}

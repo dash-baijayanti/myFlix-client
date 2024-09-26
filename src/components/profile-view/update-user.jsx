@@ -103,11 +103,11 @@ export const UpdateUser = ({ user, updatedUser }) => {
           </Form.Group>
           {/* </Card.Body> */}
           <Card.Footer>
-            <Row className="justify-content-md-center">
-              <Button className="updateAccount" variant="primary" type="submit">
-                Update Account
-              </Button>
-            </Row>
+            {/* <Row className="justify-content-md-center"> */}
+            <Button className="updateAccount" variant="primary" type="submit">
+              Update Account
+            </Button>
+            {/* </Row> */}
           </Card.Footer>
         </Form>
       </Card>

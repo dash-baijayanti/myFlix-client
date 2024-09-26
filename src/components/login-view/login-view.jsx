@@ -81,11 +81,11 @@ export const LoginView = ({ onLoggedIn }) => {
           </CardBody>
 
           <CardFooter>
-            <Row className="justify-content-md-center">
-              <Button variant="primary" type="submit">
-                Login
-              </Button>
-            </Row>
+            {/* <Row className="justify-content-md-center"> */}
+            <Button variant="primary" type="submit">
+              Login
+            </Button>
+            {/* </Row> */}
           </CardFooter>
         </Form>
       </Card>
