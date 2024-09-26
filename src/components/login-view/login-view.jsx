@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import {
   Form,
+  Row,
   Card,
   CardGroup,
   CardBody,
@@ -80,9 +81,11 @@ export const LoginView = ({ onLoggedIn }) => {
           </CardBody>
 
           <CardFooter>
+            {/* <Row className="justify-content-md-center"> */}
             <Button variant="primary" type="submit">
               Login
             </Button>
+            {/* </Row> */}
           </CardFooter>
         </Form>
       </Card>

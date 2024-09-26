@@ -1,5 +1,13 @@
 .cache
 .parcel-cache
+<<<<<<< HEAD
 dist
 node_modules
 .vscode
+=======
+.dist
+.node_modules
+.vscode
+dist
+node_modules
+>>>>>>> a42f1d12538cacb6fef2f80d5099717928c2e71a

@@ -2,13 +2,19 @@
   font-family: "Protest Guerrilla", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: large;
+  font-size: larger;
   color: rgb(143, 238, 47);
 }
 .background {
-  background-color: rgb(167, 239, 239);
+  background-color: rgb(0, 3, 22);
   // color: rgb(232, 30, 124);
 }
 .span {
   color: rgb(232, 30, 124);
+}
+.nav {
+  color: aliceblue;
+}
+.navbar-toggler-icon {
+  background-color: aliceblue;
 }

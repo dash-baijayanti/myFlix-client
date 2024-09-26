@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   Button,
   Form,
+  Row,
   Card,
   CardGroup,
   CardHeader,
@@ -94,9 +95,11 @@ export const SignupView = () => {
           </CardBody>
 
           <CardFooter>
+            {/* <Row className="justify-content-md-center"> */}
             <Button variant="primary" type="submit">
               Submit
             </Button>
+            {/* </Row> */}
           </CardFooter>
         </Form>
       </Card>

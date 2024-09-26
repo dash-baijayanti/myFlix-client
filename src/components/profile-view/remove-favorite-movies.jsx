@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 
-import { Button, Image } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-export const RemoveFavoriteMovies = ({ movieId, onRemove }) => {
+export const RemoveFavoriteMovies = ({ movieId,isFav, onRemove, onAdd }) => {
   const handleRemove = () => {
     onRemove(movieId); // Call the passed-in function to remove the movie
   };
 
+  const handleAdd = () => {
+    onAdd(movieId); // Call the passed-in function to remove the movie
+  };
+
   return (
+    <Row className="justify-content-md-center">
     <Button onClick={handleRemove} variant="danger">
       Remove
     </Button>
+    </Row>
   );
 };
 

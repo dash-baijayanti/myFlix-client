@@ -16,22 +16,24 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
             {!user && (
               <>
                 <Nav.Link as={Link} to="/login">
-                  Login
+                  <span className="nav">Login</span>
                 </Nav.Link>
                 <Nav.Link as={Link} to="/signup">
-                  Signup
+                  <span className="nav">Signup</span>
                 </Nav.Link>
               </>
             )}
             {user && (
               <>
                 <Nav.Link as={Link} to="/">
-                  Home
+                  <span className="nav"> Home</span>
                 </Nav.Link>
                 <Nav.Link as={Link} to={`/users/${user.userName}`}>
-                  Profile
+                  <span className="nav"> Profile</span>
                 </Nav.Link>
-                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
+                <Nav.Link onClick={onLoggedOut}>
+                  <span className="nav">Logout</span>
+                </Nav.Link>
               </>
             )}
           </Nav>
