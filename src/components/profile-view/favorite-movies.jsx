@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card, Image, Row, Col, Figure } from "react-bootstrap";
-import { RemoveFavoriteMovies } from "./remove-favorite-movies";
+import ExampleCarouselImage from "../ExampleCarouselImage";
 import PropTypes from "prop-types";
 
-export const FavoriteMovies = ({ user, favoriteMovieList, onRemove }) => {
+export const FavoriteMovies = ({
+  user,
+  favoriteMovieList,
+  onRemove,
+  onAdd,
+}) => {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   // Set favoriteMovies state when favoriteMovieList changes
@@ -13,57 +18,63 @@ export const FavoriteMovies = ({ user, favoriteMovieList, onRemove }) => {
   }, [favoriteMovieList]);
 
   // Function to remove a favorite movie from the list
-  const removeFav = (movieId) => {
+  const handleRemove = (movieId) => {
+    // Call the passed-in function to remove the movie from the backend or state management
     onRemove(movieId);
-    const updatedMovies = favoriteMovies.filter(
-      (movie) => movie._id !== movieId
+
+    // Update local state to reflect the change
+    setFavoriteMovies((prevMovies) =>
+      prevMovies.filter((movie) => movie._id !== movieId)
     );
-    setFavoriteMovies(updatedMovies);
-    // Call a backend API to update the user's favorite movies on the server
   };
+
+  // Function to remove a favorite movie from the list
+  // const removeFav = (movieId) => {
+  //   onRemove(movieId);
+  //   const updatedMovies = favoriteMovies.filter(
+  //     (movie) => movie._id !== movieId
+  //   );
+  //   setFavoriteMovies(updatedMovies);
+  //   // Call a backend API to update the user's favorite movies on the server
+  // };
+
+  // Function to remove a favorite movie from the list
+  // const addFav = (movieId) => {
+  //   onAdd(movieId);
+  //   const updatedMovies = favoriteMovies.filter(
+  //     (movie) => movie._id !== movieId
+  //   );
+  //   setFavoriteMovies(updatedMovies);
+  //   // Call a backend API to update the user's favorite movies on the server
+  // };
 
   // Check if user and favoriteMovieList are defined before rendering
   if (!user || !favoriteMovies) {
     return <p>Loading user data...</p>;
   }
 
+  const currentFavorites = user.favoriteMovies || []; // Assuming this is the list of user's favorite movie IDs
+
   return (
     <Card className="h-100">
       <Card.Header>
         <Row>
           <Col>
-            <h2>Favorite Movies</h2>
+            <h3>Favorite Movies</h3>
           </Col>
         </Row>
       </Card.Header>
       <Card.Body>
-        <Row>
-          {favoriteMovies && favoriteMovies.length > 0 ? (
-            favoriteMovies.map((movie) => (
-              <Col md={6} lg={3} key={movie._id} className="fav-movie">
-                <Figure>
-                  <Link to={`/movies/${movie._id}`}>
-                    {/* <h4>{movie.Title}</h4> */}
-                  </Link>
-                  <div className="pic">
-                    <Figure.Image
-                      src={movie.ImageUrl}
-                      alt={movie.Title}
-                      fluidroundedCircle
-                    />
-                  </div>
-                  <RemoveFavoriteMovies
-                    movieId={movie._id}
-                    onRemove={() => removeFav(movie._id)} // Pass the remove function
-                  />
-                  <Figure.Caption>{movie.Title}</Figure.Caption>
-                </Figure>
-              </Col>
-            ))
-          ) : (
-            <p>No favorite movies available.</p>
-          )}
-        </Row>
+        {favoriteMovies && favoriteMovies.length > 0 ? (
+          <ExampleCarouselImage
+            favoriteMovies={favoriteMovies}
+            onRemove={handleRemove} // Pass the remove function
+            onAdd={onAdd}
+            currentFavorites={currentFavorites} // Pass current favorites
+          />
+        ) : (
+          <p>No favorite movies available.</p>
+        )}
       </Card.Body>
     </Card>
   );
@@ -79,8 +90,11 @@ FavoriteMovies.propTypes = {
       _id: PropTypes.string.isRequired,
       Title: PropTypes.string.isRequired,
       ImageUrl: PropTypes.string.isRequired,
+      // Description: PropTypes.string,
     })
   ),
+  onRemove: PropTypes.func.isRequired, // Function to remove the movie
+  onAdd: PropTypes.func.isRequired, // Function to add the movie
 };
 
 FavoriteMovies.defaultProps = {

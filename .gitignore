@@ -1,9 +1,7 @@
-.node_modules
 .cache
 .parcel-cache
-<<<<<<< HEAD
 .dist
-=======
-.dist
-
->>>>>>> clientside_routing
+.node_modules
+.vscode
+dist
+node_modules

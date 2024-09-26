@@ -1,0 +1,10 @@
+.pic {
+  width: 200px; /* Set the desired width */
+  height: 300px; /* Set the desired height */
+  object-fit: cover; /* Ensures the image is cropped properly */
+  border-radius: 10px;
+}
+.btn btn-danger {
+  margin-left: 20px;
+  margin-right: 20px;
+}

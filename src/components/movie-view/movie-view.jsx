@@ -6,14 +6,17 @@ import Modal from "react-bootstrap/Modal";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "./movie-view.scss";
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, onBackClick }) => {
   const { movieId } = useParams();
+  const movieData = movies.find((b) => b._id === movieId);
 
-  const movieData = movies.find((b) => b.id === movieId);
+  if (!movieData) {
+    return <div>Movie not found</div>;
+  }
 
   return (
     <>
-      <Image src={movieData.ImageUrl} fluid />
+      <Image src={movieData.ImageUrl} fluid rounded />
 
       <ListGroup>
         <ListGroup.Item>
@@ -106,10 +109,10 @@ export const MovieView = ({ movies }) => {
       </div>
       <Link to={`/`}>
         <Button
-          // onClick={onBackClick}
+          onClick={onBackClick}
           className="back-button"
           // variant="info"
-          // style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer" }}
         >
           Back
         </Button>

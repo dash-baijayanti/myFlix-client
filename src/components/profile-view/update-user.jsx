@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Form, Card, CardGroup, Button } from "react-bootstrap";
+import { Form, Card, CardGroup, Button, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 export const UpdateUser = ({ user, updatedUser }) => {
@@ -30,7 +30,6 @@ export const UpdateUser = ({ user, updatedUser }) => {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        // console.log(response);
         if (response.ok) {
           console.log("Update successful!");
           return response.json();
@@ -54,7 +53,10 @@ export const UpdateUser = ({ user, updatedUser }) => {
   return (
     <CardGroup>
       <Card>
-        <h2>Want To Change some info?</h2>
+        <Card.Header>
+          <h3>Want To Change some info?</h3>
+        </Card.Header>
+        {/* <Card.Body> */}
         <Form className="profile-form" onSubmit={(e) => handleSubmit(e)}>
           <Form.Group controlId="formUsername">
             <Form.Label>Username:</Form.Label>
@@ -62,6 +64,9 @@ export const UpdateUser = ({ user, updatedUser }) => {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              required
+              minLength="3"
+              placeholder="Enter UserName"
             />
           </Form.Group>
 
@@ -71,6 +76,8 @@ export const UpdateUser = ({ user, updatedUser }) => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Enter Password"
             />
           </Form.Group>
 
@@ -80,6 +87,8 @@ export const UpdateUser = ({ user, updatedUser }) => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Enter Email-Id"
             />
           </Form.Group>
 
@@ -89,12 +98,17 @@ export const UpdateUser = ({ user, updatedUser }) => {
               type="date"
               value={birthday}
               onChange={(e) => setBirthday(e.target.value)}
+              required
             />
           </Form.Group>
-
-          <Button variant="primary" type="submit">
-            Update Account
-          </Button>
+          {/* </Card.Body> */}
+          <Card.Footer>
+            {/* <Row className="justify-content-md-center"> */}
+            <Button className="updateAccount" variant="primary" type="submit">
+              Update Account
+            </Button>
+            {/* </Row> */}
+          </Card.Footer>
         </Form>
       </Card>
     </CardGroup>
