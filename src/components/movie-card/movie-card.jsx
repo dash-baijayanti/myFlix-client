@@ -8,9 +8,13 @@ import "./movie-card.scss";
 export const MovieCard = ({
   movieData,
   user,
+  updatedUser = () => {},
   token,
   onMovieAdded = () => {},
 }) => {
+  // Check if the movie is already in the user's favorite movies
+  const isFavorite = user?.favMovies?.includes(movieData._id);
+
   const handleAddToFavorites = async (movieId) => {
     if (!user || !user.userName) {
       alert("User is not defined or doesn't have a userName.");
@@ -30,8 +34,11 @@ export const MovieCard = ({
 
       if (response.ok) {
         const data = await response.json();
-        onMovieAdded(data.favoriteMovies); // Notify parent component
+        onMovieAdded(data.favMovies);
         alert("Movie added to favorites!");
+        // Update the user data and localStorage here
+        updatedUser(data);
+        localStorage.setItem("user", JSON.stringify(data)); // Update local storage with the updated user object
       } else {
         alert("Failed to add movie to favorites.");
       }
@@ -49,8 +56,10 @@ export const MovieCard = ({
   return (
     <Card className="h-100">
       <Card.Img variant="top" src={movieData.ImageUrl} />
-      <Card.Body>
-        <Card.Title>{movieData.Title}</Card.Title>
+      <Card.Body className="fontt">
+        <Card.Title className="dancing-script-uniquifier">
+          <span className="spa">{movieData.Title}</span>
+        </Card.Title>
         {/* <Card.Text>{movieData.Description}</Card.Text> */}
       </Card.Body>
       <Card.Footer>
@@ -59,13 +68,19 @@ export const MovieCard = ({
             View Movie
           </Button>
         </Link>
-
-        <Button
-          variant="primary"
-          onClick={() => handleAddToFavorites(movieData._id)}
-        >
-          Add to Favorites
-        </Button>
+        {/* Conditionally render "Add to Favorites" or "Already Added" */}
+        {isFavorite ? (
+          <Button variant="success" disabled>
+            Already Added
+          </Button>
+        ) : (
+          <Button
+            variant="primary"
+            onClick={() => handleAddToFavorites(movieData._id)}
+          >
+            Add to Favorites
+          </Button>
+        )}
       </Card.Footer>
     </Card>
   );

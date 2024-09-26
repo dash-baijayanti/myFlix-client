@@ -4,7 +4,12 @@ import { Card, Image, Row, Col, Figure } from "react-bootstrap";
 import { RemoveFavoriteMovies } from "./remove-favorite-movies";
 import PropTypes from "prop-types";
 
-export const FavoriteMovies = ({ user, favoriteMovieList, onRemove }) => {
+export const FavoriteMovies = ({
+  user,
+  favoriteMovieList,
+  onRemove,
+  onAdd,
+}) => {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   // Set favoriteMovies state when favoriteMovieList changes
@@ -22,6 +27,16 @@ export const FavoriteMovies = ({ user, favoriteMovieList, onRemove }) => {
     // Call a backend API to update the user's favorite movies on the server
   };
 
+  // Function to remove a favorite movie from the list
+  const addFav = (movieId) => {
+    onAdd(movieId);
+    const updatedMovies = favoriteMovies.filter(
+      (movie) => movie._id !== movieId
+    );
+    setFavoriteMovies(updatedMovies);
+    // Call a backend API to update the user's favorite movies on the server
+  };
+
   // Check if user and favoriteMovieList are defined before rendering
   if (!user || !favoriteMovies) {
     return <p>Loading user data...</p>;
@@ -32,7 +47,7 @@ export const FavoriteMovies = ({ user, favoriteMovieList, onRemove }) => {
       <Card.Header>
         <Row>
           <Col>
-            <h2>Favorite Movies</h2>
+            <h1 className="dancing-script-uniquifier ">Favorite Movies</h1>
           </Col>
         </Row>
       </Card.Header>
@@ -55,6 +70,7 @@ export const FavoriteMovies = ({ user, favoriteMovieList, onRemove }) => {
                   <RemoveFavoriteMovies
                     movieId={movie._id}
                     onRemove={() => removeFav(movie._id)} // Pass the remove function
+                    onAdd={() => addFav(movie._id)}
                   />
                   <Figure.Caption>{movie.Title}</Figure.Caption>
                 </Figure>

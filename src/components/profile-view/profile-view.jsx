@@ -12,11 +12,47 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
   const [movies, setMovies] = useState([]); // State to store movies
   const [loading, setLoading] = useState(true); // State to manage loading
 
+  // Filter out favorite movies from the movie list
+  const favoriteMoviesData = movies.filter((movie) =>
+    favoriteMovies.includes(movie._id)
+  );
+
+  // Function to handle adding a movie to favorites
+  const handleAddFavorites = (movieId) => {
+    const updatedFavorites = [...favoriteMovies, movieId];
+    setFavoriteMovies(updatedFavorites);
+
+    fetch(
+      `https://movie-api-7rmr.onrender.com/users/${user.userName}/movies/${movieId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert("Failed to add movie to favorites");
+        }
+      })
+      .then((updatedUserResponse) => {
+        // Update user state and local storage
+        updatedUser(updatedUserResponse);
+        localStorage.setItem("user", JSON.stringify(updatedUserResponse));
+        alert("Movie added to favorites!");
+      })
+      .catch((error) => {
+        console.error("Error adding movie to favorites:", error);
+        alert("An error occurred while adding the movie.");
+      });
+  };
+
   // Fetch movies from the API
   useEffect(() => {
-    console.log("User data:", user); // Debug user object
-    console.log("Favorite movies:", user.favMovies);
-
     fetch("https://movie-api-7rmr.onrender.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -27,8 +63,8 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
         return response.json();
       })
       .then((data) => {
-        console.log("Fetched movies:", data); // Debug the data coming in
         setMovies(data);
+
         setLoading(false);
       })
       .catch((error) => {
@@ -54,20 +90,22 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
       .then((response) => {
         if (response.ok) {
           console.log("Movie removed from favorites successfully!");
+          alert("Movie removed from favorites successfully!");
+          return response.json();
         } else {
           alert("Failed to remove movie from favorites");
         }
       })
+      .then((user) => {
+        updatedUser(user);
+        localStorage.setItem("user", JSON.stringify(user));
+      })
+
       .catch((error) => {
         console.error("Error removing movie from favorites:", error);
         alert("An error occurred while trying to remove the movie.");
       });
   };
-
-  // Filter out favorite movies from the movie list
-  const favoriteMoviesData = movies.filter((movie) =>
-    favoriteMovies.includes(movie._id)
-  );
 
   const handleProfileDelete = () => {
     if (!user.userName) {
@@ -81,7 +119,6 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
       },
     })
       .then((response) => {
-        console.log(response);
         if (response.ok) {
           console.log("Account deleted successfully!");
           onLoggedOut();
@@ -124,6 +161,7 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
               user={user}
               favoriteMovieList={favoriteMoviesData}
               onRemove={handleRemoveFavorites}
+              onAdd={handleAddFavorites}
             />
           </Card.Body>
         </Card>

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export default function UserInfo({ name, email }) {
   return (
     <div>
-      <h1>hello</h1>
+      <h1 className="dancing-script-uniquifier ">Hey 😎 {name} </h1>
       <p>User:{name}</p>
       <p>Email:{email}</p>
     </div>

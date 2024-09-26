@@ -186,18 +186,21 @@ export const MainView = () => {
                           <Col
                             className="mb-4"
                             key={movie._id}
-                            xs={12}
+                            xs={8}
                             sm={6}
                             md={4}
-                            lg={3}
+                            lg={2}
                           >
                             <MovieCard
                               movieData={movie}
                               user={user}
                               token={token}
-                              isFavorite={user?.FavoriteMovies?.includes(
-                                movie._id
-                              )}
+                              updatedUser={updatedUser}
+                              isFav={
+                                user && user.favMovies
+                                  ? user.favMovies.includes(movie._id)
+                                  : false
+                              }
                             />
                           </Col>
                         ))

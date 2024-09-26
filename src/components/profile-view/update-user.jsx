@@ -30,7 +30,6 @@ export const UpdateUser = ({ user, updatedUser }) => {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        // console.log(response);
         if (response.ok) {
           console.log("Update successful!");
           return response.json();
@@ -54,7 +53,9 @@ export const UpdateUser = ({ user, updatedUser }) => {
   return (
     <CardGroup>
       <Card>
-        <h2>Want To Change some info?</h2>
+        <h1 className="dancing-script-uniquifier ">
+          Want To Change some info?
+        </h1>
         <Form className="profile-form" onSubmit={(e) => handleSubmit(e)}>
           <Form.Group controlId="formUsername">
             <Form.Label>Username:</Form.Label>
@@ -62,6 +63,9 @@ export const UpdateUser = ({ user, updatedUser }) => {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              required
+              minLength="3"
+              placeholder="Enter UserName"
             />
           </Form.Group>
 
@@ -71,6 +75,8 @@ export const UpdateUser = ({ user, updatedUser }) => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Enter Password"
             />
           </Form.Group>
 
@@ -80,6 +86,8 @@ export const UpdateUser = ({ user, updatedUser }) => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Enter Email-Id"
             />
           </Form.Group>
 
@@ -89,6 +97,7 @@ export const UpdateUser = ({ user, updatedUser }) => {
               type="date"
               value={birthday}
               onChange={(e) => setBirthday(e.target.value)}
+              required
             />
           </Form.Group>
 
