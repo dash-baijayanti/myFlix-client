@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Button, Image } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 export const RemoveFavoriteMovies = ({ movieId,isFav, onRemove, onAdd }) => {
@@ -13,9 +13,11 @@ export const RemoveFavoriteMovies = ({ movieId,isFav, onRemove, onAdd }) => {
   };
 
   return (
+    <Row className="justify-content-md-center">
     <Button onClick={handleRemove} variant="danger">
       Remove
     </Button>
+    </Row>
   );
 };
 

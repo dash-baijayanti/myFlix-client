@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import {
   Form,
+  Row,
   Card,
   CardGroup,
   CardBody,
@@ -32,6 +33,7 @@ export const LoginView = ({ onLoggedIn }) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log("Login response: ", data);
         if (data.users) {
           localStorage.setItem("user", JSON.stringify(data.users));
           localStorage.setItem("token", data.token);
@@ -79,9 +81,11 @@ export const LoginView = ({ onLoggedIn }) => {
           </CardBody>
 
           <CardFooter>
-            <Button variant="primary" type="submit">
-              Login
-            </Button>
+            <Row className="justify-content-md-center">
+              <Button variant="primary" type="submit">
+                Login
+              </Button>
+            </Row>
           </CardFooter>
         </Form>
       </Card>

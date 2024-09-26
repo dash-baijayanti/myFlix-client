@@ -133,7 +133,7 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
   };
 
   return (
-    <Container>
+    <Container className="profile">
       <Row className="justify-content-center" w-100>
         <Col>
           {/* user info */}
@@ -142,29 +142,33 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
               <UserInfo name={user.userName} email={user.Email} />
             </Card.Header>
             <Card.Body>
-              <Button variant="danger" onClick={handleProfileDelete}>
-                Delete Account
-              </Button>
+              <Row className="justify-content-md-center">
+                <Button variant="danger" onClick={handleProfileDelete}>
+                  Delete Account
+                </Button>
+              </Row>
             </Card.Body>
           </Card>
         </Col>
-
-        <Card>
-          <Card.Body>
-            <UpdateUser user={user} updatedUser={updatedUser} />
-          </Card.Body>
-        </Card>
-
-        <Card className="mb-2">
-          <Card.Body>
-            <FavoriteMovies
-              user={user}
-              favoriteMovieList={favoriteMoviesData}
-              onRemove={handleRemoveFavorites}
-              onAdd={handleAddFavorites}
-            />
-          </Card.Body>
-        </Card>
+        <Col>
+          <Card>
+            <Card.Body>
+              <UpdateUser user={user} updatedUser={updatedUser} />
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card className="mb-2">
+            <Card.Body>
+              <FavoriteMovies
+                user={user}
+                favoriteMovieList={favoriteMoviesData}
+                onRemove={handleRemoveFavorites}
+                onAdd={handleAddFavorites}
+              />
+            </Card.Body>
+          </Card>
+        </Col>
       </Row>
     </Container>
   );

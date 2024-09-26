@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Form, Card, CardGroup, Button } from "react-bootstrap";
+import { Form, Card, CardGroup, Button, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 export const UpdateUser = ({ user, updatedUser }) => {
@@ -53,9 +53,10 @@ export const UpdateUser = ({ user, updatedUser }) => {
   return (
     <CardGroup>
       <Card>
-        <h1 className="dancing-script-uniquifier ">
-          Want To Change some info?
-        </h1>
+        <Card.Header>
+          <h3>Want To Change some info?</h3>
+        </Card.Header>
+        {/* <Card.Body> */}
         <Form className="profile-form" onSubmit={(e) => handleSubmit(e)}>
           <Form.Group controlId="formUsername">
             <Form.Label>Username:</Form.Label>
@@ -100,10 +101,14 @@ export const UpdateUser = ({ user, updatedUser }) => {
               required
             />
           </Form.Group>
-
-          <Button variant="primary" type="submit">
-            Update Account
-          </Button>
+          {/* </Card.Body> */}
+          <Card.Footer>
+            <Row className="justify-content-md-center">
+              <Button className="updateAccount" variant="primary" type="submit">
+                Update Account
+              </Button>
+            </Row>
+          </Card.Footer>
         </Form>
       </Card>
     </CardGroup>

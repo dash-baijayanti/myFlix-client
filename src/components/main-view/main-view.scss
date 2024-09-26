@@ -1,3 +1,24 @@
 .col-md-8 {
   width: 100%;
 }
+// .justify-content-center mb-6 {
+//   margin-top: 10px;
+// }
+// .jjustify-content-md-center {
+//   margin-top: 30px;
+// }
+.justify-content-center.mb-6.row {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.justify-content-center.row {
+  // display: flexbox;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.col {
+  padding: 10px;
+}
+.card-group > .card {
+  margin-top: 20px;
+}

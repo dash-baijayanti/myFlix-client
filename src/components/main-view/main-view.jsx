@@ -151,7 +151,7 @@ export const MainView = () => {
                 ) : (
                   <>
                     {/* Search & Filter */}
-                    <Row className="justify-content-center mb-5">
+                    <Row className="justify-content-center mb-6">
                       <Col md={6}>
                         <Form.Control
                           type="text"
