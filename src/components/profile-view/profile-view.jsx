@@ -137,7 +137,7 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
       <Row className="justify-content-center" w-100>
         <Col>
           {/* user info */}
-          <Card>
+          <Card  md={6}>
             <Card.Header>
               <UserInfo name={user.userName} email={user.Email} />
             </Card.Header>
@@ -155,7 +155,7 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
           </Card>
         </Col>
         <Col>
-          <Card>
+          <Card  md={6}>
             <Card.Body>
               <UpdateUser user={user} updatedUser={updatedUser} />
             </Card.Body>

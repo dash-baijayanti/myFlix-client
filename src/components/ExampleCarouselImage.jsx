@@ -11,7 +11,7 @@ const ExampleCarouselImage = ({
   onAdd,
   currentFavorites,
 }) => {
-  const cardsPerSlide = 4; // Number of cards to show per slide
+  const cardsPerSlide = 2; // Number of cards to show per slide
 
   const slides = [];
   for (let i = 0; i < favoriteMovies.length; i += cardsPerSlide) {
@@ -26,7 +26,7 @@ const ExampleCarouselImage = ({
             {slide.map((movie) => {
               const isFav = currentFavorites.includes(movie._id); // Determine if the movie is a favorite
               return (
-                <Card
+                <Card md= {6}
                   style={{ width: "18rem", margin: "0 10px" }}
                   key={movie._id}
                 >
@@ -37,9 +37,11 @@ const ExampleCarouselImage = ({
                   />
                   <Card.Body>
                     <Card.Title>
+                    
                       <span className="dancing-script-uniquifier">
                         {movie.Title}
                       </span>
+                     
                     </Card.Title>
 
                     <RemoveFavoriteMovies
