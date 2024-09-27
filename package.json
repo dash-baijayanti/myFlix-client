@@ -4,7 +4,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build src/index.html",
-    "start": "parcel serve src/index.html"
+    "start": "parcel serve src/index.html",
+    "postinstall": "npm rebuild"
   },
   "keywords": [],
   "author": "",
