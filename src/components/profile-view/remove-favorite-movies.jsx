@@ -13,11 +13,11 @@ export const RemoveFavoriteMovies = ({ movieId,isFav, onRemove, onAdd }) => {
   };
 
   return (
-    <Row className="justify-content-md-center">
+   
     <Button onClick={handleRemove} variant="danger">
       Remove
     </Button>
-    </Row>
+  
   );
 };
 

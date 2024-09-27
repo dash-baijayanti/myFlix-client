@@ -19,7 +19,7 @@ const ExampleCarouselImage = ({
   }
 
   return (
-    <Carousel>
+    <Carousel className="theme">
       {slides.map((slide, index) => (
         <Carousel.Item key={index}>
           <div className="d-flex justify-content-around">
@@ -35,7 +35,7 @@ const ExampleCarouselImage = ({
                     src={movie.ImageUrl}
                     alt={movie.Title}
                   />
-                  <Card.Body>
+                  <Card.Body className="rem">
                     <Card.Title>
                     
                       <span className="dancing-script-uniquifier">

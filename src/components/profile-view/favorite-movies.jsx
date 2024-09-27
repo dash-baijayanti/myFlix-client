@@ -56,11 +56,11 @@ export const FavoriteMovies = ({
   const currentFavorites = user.favoriteMovies || []; // Assuming this is the list of user's favorite movie IDs
 
   return (
-    <Card className="h-100">
+    <Card md={2}>
       <Card.Header>
         <Row>
           <Col>
-            <h3>Favorite Movies</h3>
+            <h3 >Favorite Movies</h3>
           </Col>
         </Row>
       </Card.Header>
