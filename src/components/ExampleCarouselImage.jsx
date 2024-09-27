@@ -1,9 +1,11 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { RemoveFavoriteMovies } from "./profile-view/remove-favorite-movies";
+
 
 const ExampleCarouselImage = ({
   favoriteMovies,
@@ -30,6 +32,9 @@ const ExampleCarouselImage = ({
                   style={{ width: "18rem", margin: "0 10px" }}
                   key={movie._id}
                 >
+                  <Link className="rem" to={`/movies/${encodeURIComponent(movie._id)}`}>View Movies
+         
+         </Link>
                   <Card.Img
                     variant="top"
                     src={movie.ImageUrl}
@@ -43,6 +48,7 @@ const ExampleCarouselImage = ({
                       </span>
                      
                     </Card.Title>
+                    
 
                     <RemoveFavoriteMovies
                       movieId={movie._id}
@@ -50,6 +56,7 @@ const ExampleCarouselImage = ({
                       onRemove={onRemove}
                       onAdd={onAdd}
                     />
+                     
                   </Card.Body>
                 </Card>
               );

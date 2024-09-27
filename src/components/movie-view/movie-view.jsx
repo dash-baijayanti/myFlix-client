@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "./movie-view.scss";
+
 export const MovieView = ({ movies, onBackClick }) => {
   const { movieId } = useParams();
   const movieData = movies.find((b) => b._id === movieId);
@@ -45,8 +46,8 @@ export const MovieView = ({ movies, onBackClick }) => {
       <div>
         <Modal.Dialog>
           <Modal.Header>
-            <Modal.Title>
-              <strong>Genre</strong>
+            <Modal.Title >
+              <strong className="nav">Genre</strong>
             </Modal.Title>
           </Modal.Header>
 
@@ -69,8 +70,8 @@ export const MovieView = ({ movies, onBackClick }) => {
       <div>
         <Modal.Dialog>
           <Modal.Header>
-            <Modal.Title>
-              <strong>Director</strong>
+            <Modal.Title >
+              <strong className="nav">Director</strong>
             </Modal.Title>
           </Modal.Header>
 

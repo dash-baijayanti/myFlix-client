@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 export const FavoriteMovies = ({
   user,
+  movieData,
   favoriteMovieList,
   onRemove,
   onAdd,
@@ -28,25 +29,7 @@ export const FavoriteMovies = ({
     );
   };
 
-  // Function to remove a favorite movie from the list
-  // const removeFav = (movieId) => {
-  //   onRemove(movieId);
-  //   const updatedMovies = favoriteMovies.filter(
-  //     (movie) => movie._id !== movieId
-  //   );
-  //   setFavoriteMovies(updatedMovies);
-  //   // Call a backend API to update the user's favorite movies on the server
-  // };
 
-  // Function to remove a favorite movie from the list
-  // const addFav = (movieId) => {
-  //   onAdd(movieId);
-  //   const updatedMovies = favoriteMovies.filter(
-  //     (movie) => movie._id !== movieId
-  //   );
-  //   setFavoriteMovies(updatedMovies);
-  //   // Call a backend API to update the user's favorite movies on the server
-  // };
 
   // Check if user and favoriteMovieList are defined before rendering
   if (!user || !favoriteMovies) {

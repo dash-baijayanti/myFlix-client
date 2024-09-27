@@ -14,7 +14,10 @@ export const MovieCard = ({
 }) => {
   // Check if the movie is already in the user's favorite movies
   const isFavorite = user?.favMovies?.includes(movieData._id);
-
+  const onMovieClick = (movieData) => {
+    // Handle the movie click event (e.g., log movie data or navigate)
+    console.log('Movie clicked:', movieData);
+  };
   const handleAddToFavorites = async (movieId) => {
     if (!user || !user.userName) {
       alert("User is not defined or doesn't have a userName.");
