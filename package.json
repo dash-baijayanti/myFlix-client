@@ -23,6 +23,7 @@
   "dependencies": {
     "@coreui/icons": "^3.0.1",
     "@coreui/icons-react": "^2.3.0",
+    "@parcel/watcher": "^2.4.1",
     "@popperjs/core": "^2.11.8",
     "@types/react": "^18.3.6",
     "axios": "^1.7.7",
