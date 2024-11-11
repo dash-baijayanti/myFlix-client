@@ -43,4 +43,4 @@ Parcel takes an entry file, lists all of its dependencies (and any dependencies 
 
   # To launch, please follow this link:
   
-  - <a "https://myflix-bd.netlify.app" ></a>
+    - [https://myflix-bd.netlify.app](https://myflix-bd.netlify.app)
