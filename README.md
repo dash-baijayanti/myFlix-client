@@ -44,3 +44,8 @@ Parcel takes an entry file, lists all of its dependencies (and any dependencies 
   # To launch, please follow this link:
   
    [https://myflix-bd.netlify.app](https://myflix-bd.netlify.app)
+
+   <img src="flix/Screenshot 2024-11-11 214759.png" alt="flix" height="300" width="500" >
+   <img src="flix/Screenshot 2024-11-11 214901.png" alt="flix" height="300" width="500" >
+   <img src="flix/Screenshot 2024-11-11 214934.png" alt="flix" height="300" width="500" >
+   <img src="flix/Screenshot 2024-11-11 215026.png" alt="flix" height="300" width="500" >
